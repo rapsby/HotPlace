@@ -9,7 +9,7 @@ from pprint import pprint
 import pathlib
 
 loc = input("위치 : ")
-upHpAreaId = 10
+upHpAreaId = 2
 hpAreaId = input("AreaId : ")
 
 

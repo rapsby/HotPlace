@@ -22,11 +22,18 @@ shutil.copy(basefile, file)
 r = requests.get("https://www.siksinhot.com/taste?upHpAreaId=" + str(upHpAreaId) + "&hpAreaId="+str(hpAreaId)+"&isBestOrd=N")
 soup = BeautifulSoup(r.text, "html.parser")
 
+
 # 상호명 parsing
 mr = soup.find_all("script")
 pattern = "\"pname\":\"[^\"]+"
 r = re.compile(pattern)
 results = r.findall(str(mr))
+
+# 전화번호 parsing을 위한 pid
+pattern = "\"pid\":\"[^\"]+"
+r = re.compile(pattern)
+results = r.findall(str(mr))
+
 
 # 추천 맛집 string 정리
 it = iter(results)
@@ -82,3 +89,20 @@ with zipfile.ZipFile('namespace.zip', mode='w') as f:
     f.write('ko.xlf', compress_type=zipfile.ZIP_DEFLATED)
 
 print("성공")
+
+"""
+
+r = requests.get("https://www.siksinhot.com/P/"+)
+soup = BeautifulSoup(r.text, "html.parser")
+print(soup)"""
+
+
+"""
+# 주소 parsing
+mr = soup.find_all("script")
+pattern = "\"addr\":\"[^\"]+"
+r = re.compile(pattern)
+results = r.findall(str(mr))
+
+
+"""

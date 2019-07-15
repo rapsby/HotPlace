@@ -11,8 +11,8 @@ import time
 from multiprocessing import Pool
 from urllib.request import urlopen
 
-start = time.time()
 
+start_time = time.time()
 loc = "1" #input("위치 : ")
 upHpAreaId = 2
 hpAreaId = 1026 #input("AreaId : ")
@@ -24,8 +24,11 @@ kofile = 'C:/Users/k/Desktop/json/ko.xlf'
 kobasefile = 'C:/Users/k/Desktop/json/hhhppp/ko.xlf'
 shutil.copy(basefile, file)
 
-
-
+url = 'https://www.siksinhot.com/notice/653'
+print(url)
+r = requests.get(url)
+print(r.text)
+print("--- %s seconds ---" % (time.time() - start_time))
 """
 # 상호명 parsing
 mr = soup.find_all("script")
@@ -67,12 +70,12 @@ import zipfile
 with zipfile.ZipFile('namespace.zip', mode='w') as f:
     f.write('ko.xlf', compress_type=zipfile.ZIP_DEFLATED)
 '''
-
+'''
 def get_links():
     print("link")
 
-    r = requests.get("https://www.siksinhot.com/taste?upHpAreaId=" + str(upHpAreaId) + "&hpAreaId=" + str(hpAreaId) + "&isBestOrd=N")
-
+    #r = requests.get("https://www.siksinhot.com/taste?upHpAreaId=" + str(upHpAreaId) + "&hpAreaId=" + str(hpAreaId) + "&isBestOrd=N")
+    r = requests.get('https://www.siksinhot.com/')
     print(r)
     soup = BeautifulSoup(r.text, "html.parser")
     # 전화번호 parsing을 위한 pid
@@ -107,7 +110,7 @@ if __name__=='__main__':
     pool = Pool(processes=8) # 4개의 프로세스를 사용합니다.
     pool.map(get_content, get_links()) # get_contetn 함수를 넣어줍시다.
     print("--- %s seconds ---" % (time.time() - start_time))
-
+'''
 '''
             # r = requests.get("https://www.siksinhot.com/P/" + pid)
             # soup = BeautifulSoup(r.text, "html.parser")
